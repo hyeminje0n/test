@@ -1,0 +1,46 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sticker-board {
+	width: 800px;
+	height: 800px;
+	background-color: gainsboro;
+	position: relative;
+	overflow: hidden;
+	cursor: none;
+}
+
+.sticker {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	cursor: grab;
+	display: none;
+}
+
+.show {
+	display: block;
+}
+
+.hide {
+	display: none;
+}
+
+.cursor {
+	width: 70px;
+	height: 30px;
+	background-color: aliceblue;
+	position: absolute;
+	z-index: 1000;
+}

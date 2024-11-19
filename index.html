@@ -1,9 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>sticker</title>
+		<link rel="stylesheet" href="sticker.css" />
+		<script defer src="sticker.js"></script>
 	</head>
-	<body></body>
+	<body>
+		<h1>ステッカーメモ機能実装（機能だけ）</h1>
+		<!--스티커 판-->
+		<div class="sticker-board" id="board">
+			<!--스티커 목록-->
+			<div class="sticker-list">
+				<div class="sticker" data-color="#FAFFAF"></div>
+				<div class="sticker" data-color="#96C9F4"></div>
+				<div class="sticker" data-color="#3FA2F6"></div>
+				<div class="sticker" data-color="#0F67B1"></div>
+				<div class="sticker" data-color="#FFBE98"></div>
+				<div class="sticker" data-color="#F05A7E"></div>
+				<div class="sticker" data-color="#125B9A"></div>
+				<div class="sticker" data-color="#0B8494"></div>
+				<div class="sticker" data-color="#EECAD5"></div>
+				<div class="sticker" data-color="#F1D3CE"></div>
+				<div class="sticker" data-color="#F6EACB"></div>
+			</div>
+
+			<!--커서를 따라다니는 요소(커서대신)-->
+			<div class="cursor flex-center hide">Click!</div>
+		</div>
+	</body>
 </html>
