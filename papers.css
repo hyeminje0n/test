@@ -46,8 +46,10 @@
 	position: absolute;
 
 	display: flex;
-	padding: 30px 0 0 450px;
+	padding: 40px 0 0 360px;
 	cursor: pointer;
+	box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+		rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 .paper h2 {
@@ -66,22 +68,17 @@
 }
 
 .paper:nth-child(2) {
-	background-color: antiquewhite;
 	top: 150px;
 }
 .paper:nth-child(3) {
-	background-color: blue;
 	top: 300px;
 }
 .paper:nth-child(4) {
-	background-color: green;
 	top: 450px;
 }
 .paper:nth-child(5) {
-	background-color: yellowgreen;
 	top: 600px;
 }
 .paper:nth-child(6) {
-	background-color: orange;
 	top: 750px;
 }

@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			width: "100vw",
 			height: "105vh",
 			zIndex: 10000,
+			boxShadow: "",
 		});
 
 		paper.addEventListener("mouseover", () => {
