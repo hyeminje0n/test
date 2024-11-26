@@ -1,0 +1,123 @@
+.speech {
+	position: relative;
+}
+
+.speech-1,
+.speech-2,
+.speech-3,
+.speech-4 {
+	position: relative;
+	width: 360px;
+	height: 210px;
+	filter: drop-shadow(-10px 8px 0px rgba(255, 232, 118, 1));
+}
+
+.speech-1::after {
+	content: "";
+	display: block;
+	clip-path: polygon(
+		7% 19%,
+		7% 19%,
+		7% 18%,
+		2% 65%,
+		16% 84%,
+		67% 91%,
+		92% 92%,
+		80% 81%,
+		98% 59%,
+		88% 15%,
+		66% 3%
+	);
+	background-color: #ff8330;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.speech-2::after {
+	content: "";
+	display: block;
+	clip-path: polygon(
+		4% 26%,
+		3% 76%,
+		28% 96%,
+		77% 74%,
+		87% 77%,
+		98% 76%,
+		86% 64%,
+		93% 23%,
+		66% 3%
+	);
+	background-color: #ff8330;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.speech-3,
+.speech-4 {
+	filter: drop-shadow(10px 8px 0px rgba(255, 232, 118, 1));
+}
+
+.speech-3::after {
+	content: "";
+	display: block;
+	clip-path: polygon(
+		7% 19%,
+		7% 19%,
+		7% 18%,
+		2% 65%,
+		16% 84%,
+		67% 91%,
+		92% 92%,
+		80% 81%,
+		98% 59%,
+		88% 15%,
+		66% 3%
+	);
+	background-color: #ff8330;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	transform: rotate(180deg);
+}
+
+.speech-4::after {
+	content: "";
+	display: block;
+	clip-path: polygon(
+		4% 26%,
+		3% 76%,
+		28% 96%,
+		77% 74%,
+		87% 77%,
+		98% 76%,
+		86% 64%,
+		93% 23%,
+		66% 3%
+	);
+	background-color: #ff8330;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	transform: rotate(180deg);
+}
+
+.speech .question {
+	position: absolute;
+	top: 10px;
+	left: 25px;
+	font-weight: 600;
+	transform: rotate(-10deg);
+}
+
+.speech .answer {
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	transform: rotate(-9deg);
+}
