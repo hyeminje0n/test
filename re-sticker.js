@@ -65,6 +65,12 @@ function end() {
 
 board.addEventListener("click", (e) => {
 	showStickerInBoard(e);
+	// 클릭 시 커서 크기 변경
+	clickcursor.style.transform = "scale(0.9)";
+	// 0.1초 후에 원래 크기로 돌아옴
+	setTimeout(() => {
+		clickcursor.style.transform = "scale(1)";
+	}, 100);
 });
 
 // 커서를 따라다니는 click div
@@ -79,11 +85,28 @@ board.addEventListener("mousemove", (e) => {
 		clickcursor.classList.add("hide");
 		board.style.cursor = "pointer";
 	}
-	clickcursor.style.left = mouseX + "px";
-	clickcursor.style.top = mouseY + "px";
+	clickcursor.style.left = mouseX - 70 + "px";
+	clickcursor.style.top = mouseY - 40 + "px";
+});
+
+board.addEventListener("mouseleave", () => {
+	clickcursor.classList.add("hide"); // 커서 숨김
 });
 
 stickerList.forEach((sticker) => {
 	sticker.style.backgroundColor = sticker.dataset.color; // 메모지 배경색 지정
 	sticker.addEventListener("mousedown", start);
+});
+
+document.querySelector(".sticker--title").addEventListener("mouseenter", () => {
+	gsap.to(".cursor", {
+		scale: 1.6,
+		duration: 0.6,
+	});
+});
+document.querySelector(".sticker--title").addEventListener("mouseout", () => {
+	gsap.to(".cursor", {
+		scale: 1,
+		duration: 0.3,
+	});
 });

@@ -6,11 +6,13 @@
 		<title>스티커판 디자인 넣기</title>
 		<link rel="stylesheet" href="re-sticker.css" />
 		<script src="re-sticker.js" defer></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 	</head>
 	<body>
 		<h1>ステッカーメモ機能実装</h1>
 		<!--스티커 판-->
 		<div class="sticker-board" id="board">
+			<h3 class="sticker--title">採用情報</h3>
 			<!--스티커 목록-->
 			<ul class="sticker-list">
 				<li class="sticker sticker__elem" data-color="#FF8500">
@@ -91,7 +93,30 @@
 				</li>
 			</ul>
 		</div>
+
 		<!--커서를 따라다니는 요소(커서대신)-->
-		<div class="cursor flex-center hide">Click!</div>
+		<svg
+			viewBox="0 0 200 200"
+			xmlns="http://www.w3.org/2000/svg"
+			class="cursor hide"
+		>
+			<path
+				id="myPath"
+				fill="#0084FF"
+				d="M65.2,-36.7C75.7,-19.3,69.5,8.6,55.9,29.4C42.2,50.2,21.1,63.9,-0.1,63.9C-21.3,64,-42.6,50.4,-56.4,29.5C-70.3,8.6,-76.6,-19.6,-66,-37.1C-55.3,-54.5,-27.7,-61.1,-0.2,-61C27.3,-60.9,54.6,-54.1,65.2,-36.7Z"
+				transform="translate(100 100)"
+			/>
+			<text
+				x="50%"
+				y="50%"
+				text-anchor="middle"
+				dominant-baseline="middle"
+				font-size="16"
+				font-weight="bold"
+				fill="white"
+			>
+				click!
+			</text>
+		</svg>
 	</body>
 </html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<!-- GSAP -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+		<style>
+			.container {
+				display: flex;
+				gap: 10px;
+			}
+
+			.wrap {
+				width: 200px;
+				height: 200px;
+				background-color: #e9e9e9;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				overflow: hidden;
+				cursor: none;
+			}
+
+			.cursor {
+				width: 150px;
+				height: 150px;
+				position: absolute;
+				mix-blend-mode: difference;
+				transition: transform 0.1s ease-in-out;
+				z-index: 10; /* 커서가 다른 요소들 위로 오도록 설정 */
+			}
+
+			.cursor--icon {
+				transform: scale(0.5);
+				mix-blend-mode: normal;
+			}
+
+			.cursor--blur {
+				box-shadow: 0 0 15px rgba(255, 102, 0, 0.2);
+				border: 1px solid rgba(255, 102, 0, 0.2);
+				backdrop-filter: blur(3px);
+				background: rgba(255, 255, 255, 0.05);
+				border-radius: 10px;
+				aspect-ratio: 1;
+				z-index: 9;
+				width: 60px;
+				height: 60px;
+				cursor: none;
+				mix-blend-mode: normal;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: rgba(255, 102, 0, 0.6);
+			}
+
+			/* hide 클래스를 display: none으로 수정 */
+			.hide {
+				display: none;
+			}
+
+			/* wrap4 영역 스타일 */
+			.wrap4 {
+				width: 300px;
+				height: 300px;
+				background-color: #ccc;
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+			}
+
+			.msg {
+				position: absolute;
+				font-size: 16px;
+				font-weight: bold;
+				color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="wrap wrap1" id="one">
+				<svg
+					viewBox="0 0 200 200"
+					xmlns="http://www.w3.org/2000/svg"
+					class="cursor hide"
+				>
+					<path
+						id="myPath"
+						fill="#FF0066"
+						d="M54.5,-20C60.2,-0.1,47.2,23.5,28,37.1C8.8,50.7,-16.6,54.3,-33.1,43C-49.6,31.6,-57,5.3,-50,-16.3C-43,-37.9,-21.5,-54.9,1.4,-55.3C24.4,-55.8,48.8,-39.8,54.5,-20Z"
+						transform="translate(100 100)"
+					/>
+					<text
+						x="50%"
+						y="50%"
+						text-anchor="middle"
+						dominant-baseline="middle"
+						font-size="16"
+						font-weight="bold"
+						fill="white"
+					>
+						click
+					</text>
+				</svg>
+				<h1>1</h1>
+			</div>
+			<div class="wrap wrap2">
+				<div class="cursor cursor--icon hide">
+					<img src="커서1.png" />
+				</div>
+				<h1>2</h1>
+			</div>
+			<div class="wrap wrap3">
+				<div class="cursor cursor--blur hide">
+					<span>click</span>
+				</div>
+				<h1>3</h1>
+			</div>
+			<div class="wrap wrap4">
+				<h1>4</h1>
+			</div>
+		</div>
+
+		<script>
+			window.addEventListener("load", function () {
+				// 애니메이션 시작
+				gsap.to("#myPath", {
+					duration: 1, // 애니메이션 지속 시간
+					attr: {
+						d: "M54.5,-20C60.2,-0.1,47.3,23.6,28.1,37.2C8.9,50.8,-16.5,54.4,-33.0,43.1C-49.5,31.7,-57.1,5.4,-50,-16.2C-42.9,-37.8,-21.4,-54.8,1.5,-55.2C24.5,-55.7,48.9,-39.7,54.6,-19.9Z", // 아주 미세한 변화
+					},
+					repeat: -1, // 애니메이션 무한 반복
+					yoyo: true, // yoyo 효과 (반복 시 반대로 돌아가도록)
+					ease: "power1.inOut", // 이징 함수
+				});
+			});
+
+			const one = document.getElementById("one");
+			const $wrap = document.querySelectorAll(".wrap");
+
+			$wrap.forEach((wrap) => {
+				const cursor = wrap.querySelector(".cursor"); // 커서
+
+				// 마우스 움직임 처리
+				wrap.addEventListener("mousemove", (e) => {
+					const boardRect = wrap.getBoundingClientRect();
+					const mouseX = e.pageX - boardRect.left - window.scrollX;
+					const mouseY = e.pageY - boardRect.top - window.scrollY;
+
+					// 커서 위치 갱신
+					cursor.classList.remove("hide");
+					cursor.style.left = mouseX - 70 + "px"; // 커서 크기 반영
+					cursor.style.top = mouseY - 70 + "px"; // 커서 크기 반영
+				});
+
+				// 마우스가 요소를 떠날 때 커서 숨기기
+				wrap.addEventListener("mouseleave", () => {
+					cursor.classList.add("hide");
+				});
+			});
+
+			const wrapDiv = document.querySelector(".wrap4");
+			const text = "CLICK";
+
+			// 초기화 변수
+			const msgStr = text.split(""); // 출력할 문자열을 'click'으로 고정
+			let xPos = [],
+				yPos = [];
+			const xDist = 20; // 글자 간격
+			const loopTime = 50; // 애니메이션 루프 시간
+
+			// 마우스 좌표
+			let x = 0,
+				y = 0;
+
+			// 마우스 좌표 추적
+			function mouseXY(event) {
+				const rect = wrapDiv.getBoundingClientRect(); // wrapDiv의 크기와 위치 정보
+				x = event.clientX - rect.left; // 마우스 좌표를 wrapDiv 기준으로 변환
+				y = event.clientY - rect.top;
+			}
+
+			// 문자 초기화 및 화면에 표시
+			function fInit() {
+				// xPos, yPos 초기화
+				for (let i = 0; i < msgStr.length; i++) {
+					xPos[i] = -100;
+					yPos[i] = -100;
+				}
+
+				// 각 문자에 대해 div 생성 및 스타일 설정
+				msgStr.forEach((char, i) => {
+					const charDiv = document.createElement("div");
+					charDiv.innerHTML = char;
+					charDiv.id = `e7e${i}`;
+					charDiv.classList.add("msg"); // 공통 스타일 추가
+					charDiv.style.position = "absolute";
+					charDiv.style.left = "-100px";
+					charDiv.style.top = "-100px";
+					wrapDiv.appendChild(charDiv);
+				});
+
+				// 애니메이션 시작
+				moveMouse();
+			}
+
+			// 마우스 좌표에 따라 글자 움직이기
+			function moveMouse() {
+				// xPos, yPos 초기 위치 설정
+				xPos[0] = x + xDist;
+				yPos[0] = y;
+
+				// 앞글자들이 뒤를 따르도록 좌표 업데이트
+				for (let i = msgStr.length - 1; i > 0; i--) {
+					xPos[i] = xPos[i - 1] + xDist;
+					yPos[i] = yPos[i - 1];
+				}
+
+				// 각 문자에 대해 스타일 업데이트
+				msgStr.forEach((_, i) => {
+					const charDiv = document.querySelector(`#e7e${i}`);
+					charDiv.classList.remove("hide");
+					charDiv.style.left = `${xPos[i]}px`;
+					charDiv.style.top = `${yPos[i]}px`;
+					charDiv.style.color = "#000";
+					charDiv.style.fontSize = "14px"; // 폰트 크기 고정
+				});
+
+				// 반복 호출
+				setTimeout(moveMouse, loopTime);
+			}
+
+			// 페이지 로드 시 초기화 실행
+			window.addEventListener("load", fInit);
+			wrapDiv.addEventListener("mousemove", mouseXY); // wrapDiv에서만 마우스 움직임을 감지
+			wrapDiv.addEventListener("mouseleave", () => {
+				msgStr.forEach((_, i) => {
+					const charDiv = document.querySelector(`#e7e${i}`);
+					charDiv.classList.add("hide");
+				});
+			});
+
+			// =====
+
+			document.querySelector(".wrap1").addEventListener("click", () => {
+				const cursor = document
+					.querySelector(".wrap1")
+					.querySelector(".cursor");
+
+				// 클릭 애니메이션
+				cursor.style.transform = "scale(1.1)";
+				gsap.to(".wrap1 path", {
+					fill: "#F1C21B",
+				});
+
+				// 애니메이션이 끝난 후 원래 크기로 되돌리기
+				setTimeout(() => {
+					cursor.style.transform = "scale(1)";
+				}, 100); // 100ms 후에 되돌리기
+			});
+		</script>
+	</body>
+</html>

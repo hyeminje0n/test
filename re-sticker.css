@@ -4,13 +4,35 @@
 	box-sizing: border-box;
 }
 
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 .sticker-board {
 	width: 1440px;
-	height: 1080px;
+	height: 600px;
 	background-color: #fff;
 	position: relative;
 	padding: 22px;
-	cursor: none;
+	/* cursor: none; */
+	border: 1px solid #000;
+	overflow: hidden;
+	position: relative;
+}
+
+.sticker--title {
+	display: inline-block;
+	margin: 0 auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 42px;
+	font-weight: 600;
+	animation: updown 5s infinite alternate;
 }
 
 .sticker-list {
@@ -18,38 +40,44 @@
 }
 
 .sticker__elem {
-	width: 436px;
-	height: 230px;
+	width: 336px;
+	height: 180px;
 	position: absolute;
 	background-color: rgb(154, 205, 50);
-	padding: 51px 30px;
+	padding: 40px 30px;
 	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 	display: none;
 	z-index: 1;
+}
+
+.sticker__elem span {
+	pointer-events: none;
 }
 
 .text--bold {
 	display: block;
 	text-align: end;
 	font-weight: 600;
-	font-size: 20px;
+	font-size: 18px;
 }
 
 .text--regular {
 	display: block;
-	font-size: 24px;
+	font-size: 18px;
 }
 
 .sticker__msg {
 	justify-content: center;
 	align-items: center;
-	padding: 10px 130px;
+	padding: 10px 60px;
 	z-index: 100000;
 	display: none;
 	position: absolute;
-	top: 500px;
-	left: 412px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	background-color: #fff;
+	pointer-events: none;
 }
 
 .msg--bold {
@@ -68,88 +96,100 @@
 }
 
 .sticker:nth-child(1) {
-	top: 100px;
-	right: 25px;
+	top: 70px;
+	left: 1088px;
 	transform: rotate(-23.59deg);
 }
 
 .sticker:nth-child(2) {
-	bottom: 100px;
-	left: 125px;
+	top: 354px;
+	left: 55px;
 	transform: rotate(20deg);
 }
 
 .sticker:nth-child(3) {
-	bottom: 70px;
-	left: 510px;
+	top: 373px;
+	left: 534px;
 	transform: rotate(0deg);
 }
 
 .sticker:nth-child(4) {
-	top: 50px;
-	right: 410px;
+	top: 30px;
+	left: 853px;
 	transform: rotate(10deg);
 }
 
 .sticker:nth-child(5) {
-	top: 295px;
-	right: 370px;
+	top: 346px;
+	left: 766px;
 	transform: rotate(4deg);
 }
 
 .sticker:nth-child(6) {
-	bottom: 120px;
-	right: 60px;
+	top: 333px;
+	left: 1086px;
 	transform: rotate(-33deg);
 }
 
 .sticker:nth-child(7) {
-	top: 100px;
+	top: 154px;
 	left: 160px;
 	transform: rotate(0deg);
 }
 
 .sticker:nth-child(8) {
-	top: 480px;
-	left: 10px;
+	top: 61px;
+	left: 24px;
 	transform: rotate(-30deg);
 }
 
 .sticker:nth-child(9) {
-	bottom: 300px;
-	left: 300px;
+	top: 45px;
+	left: 357px;
 	transform: rotate(12deg);
 }
 
 .sticker:nth-child(10) {
-	bottom: 260px;
-	right: 300px;
+	top: 84px;
+	left: 606px;
 	transform: rotate(24deg);
 }
 
 .sticker:nth-child(11) {
-	top: 360px;
-	right: 20px;
+	top: 249px;
+	left: 933px;
 	transform: rotate(32deg);
 }
 
 .sticker:nth-child(12) {
-	top: 320px;
-	left: 260px;
+	top: 299px;
+	left: 287px;
 	transform: rotate(12deg);
 }
 
 .cursor {
-	width: 70px;
-	height: 30px;
-	background-color: aliceblue;
+	width: 200px;
+	height: 200px;
 	position: absolute;
-	z-index: 1000;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	transition: transform 0.1s ease-in-out;
+	z-index: 10;
+	pointer-events: none;
+	mix-blend-mode: exclusion;
+	cursor: none;
 }
 
 .hide {
 	display: none;
+}
+
+@keyframes updown {
+	0% {
+		top: 50%;
+	}
+	50% {
+		top: 45%;
+	}
+	100% {
+		top: 55%;
+	}
 }

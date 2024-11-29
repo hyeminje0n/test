@@ -5,7 +5,8 @@
 .speech-1,
 .speech-2,
 .speech-3,
-.speech-4 {
+.speech-4,
+.speech-5 {
 	position: relative;
 	width: 360px;
 	height: 210px;
@@ -105,6 +106,25 @@
 	top: 0;
 	left: 0;
 	transform: rotate(180deg);
+}
+
+.speech-5::after {
+	content: "";
+	display: block;
+	clip-path: polygon(
+		7% 18%,
+		2% 65%,
+		16% 84%,
+		80% 81%,
+		98% 59%,
+		88% 15%,
+		66% 3%
+	);
+	background-color: #ff8330;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
 }
 
 .speech .question {
